@@ -1,5 +1,13 @@
 # Change log
 
+## v1.0.0 31 Jul, 2019
+
+Authentication heavy work
+
+**Added:**
+
+- model/User.js
+
 ## v1.0.0 30 Jul, 2019
 
 Initial release
