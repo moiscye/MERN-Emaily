@@ -6,14 +6,14 @@ const keys = require("../config/keys");
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
 
-//this code will run after authentication the google strategy
+//this code will run after authenticating the google strategy
 //this line will add a cookie or token so the user can log back in
 passport.serializeUser((user, cb) => {
   cb(null, user);
 });
 
-//this code will take the id that the user will
-//will be explained further
+//this code will convert the userid into User object
+//from the cookie coming in the request
 passport.deserializeUser((id, cb) => {
   User.findById(id).then(user => {
     cb(null, user);
@@ -33,7 +33,6 @@ passport.use(
         if (existingUser) {
           //already in DB
           console.log("user already in DB");
-
           cb(null, existingUser);
         } else {
           new User({ googleId: profile.id }).save().then(user => {
