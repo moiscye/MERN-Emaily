@@ -1,5 +1,13 @@
 # Change log
 
+## v1.0.0 1 Aug, 2019
+
+Authentication
+
+**Added:**
+
+- config/prod.js
+
 ## v1.0.0 31 Jul, 2019
 
 Authentication heavy work
