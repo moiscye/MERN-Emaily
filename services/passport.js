@@ -14,10 +14,9 @@ passport.serializeUser((user, cb) => {
 
 //this code will convert the userid into User object
 //from the cookie coming in the request
-passport.deserializeUser((id, cb) => {
-  User.findById(id).then(user => {
-    cb(null, user);
-  });
+passport.deserializeUser(async (id, cb) => {
+  const user = await User.findById(id);
+  cb(null, user);
 });
 
 passport.use(
@@ -29,19 +28,12 @@ passport.use(
       callbackURL: "/auth/google/callback",
       proxy: true
     },
-    (accessToken, refreshToken, profile, cb) => {
-      User.findOne({ googleId: profile.id }).then(existingUser => {
-        if (existingUser) {
-          //already in DB
-          console.log("user already in DB");
-          cb(null, existingUser);
-        } else {
-          new User({ googleId: profile.id }).save().then(user => {
-            console.log("creating user in DB");
-            cb(null, user);
-          });
-        }
-      });
+    async (accessToken, refreshToken, profile, cb) => {
+      const existingUser = await User.findOne({ googleId: profile.id });
+      if (existingUser) return cb(null, existingUser);
+
+      const user = await new User({ googleId: profile.id }).save();
+      cb(null, user);
     }
   )
 );

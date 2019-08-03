@@ -16,13 +16,18 @@ module.exports = app => {
   app.get(
     //callback route that google will redirect  to
     "/auth/google/callback",
-    passport.authenticate("google")
+    passport.authenticate("google"),
+    //this route redirects to the surveys route
+    //which belogs to the front end
+    (req, res) => {
+      res.redirect("/surveys");
+    }
   );
 
   app.get("/api/logout", (req, res) => {
     req.logout();
     //req.session = null;
-    res.send({ user: "logged out" });
+    res.redirect("/");
   });
 
   app.get("/api/current_user", (req, res) => {

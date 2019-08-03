@@ -2,6 +2,32 @@
 
 ## v1.0.0 1 Aug, 2019
 
+#### Client side added with create-react-app
+
+**Added:**
+
+- components/App.jsx
+- components/Header.jsx
+- components/Payments.jsx
+- components/Landing.jsx
+- components/Header.jsx
+- actions/index.js
+- actions/types.js
+- reducers/index.js
+- reducers/authReducer.js
+- setupProxy.js
+- .env.development
+- .env.production
+
+#### Server side Changes
+
+**Added:**
+
+- middleware/requireLogin.js
+- routes/billingRoutes.js
+
+## v1.0.0 1 Aug, 2019
+
 Authentication
 
 **Added:**
