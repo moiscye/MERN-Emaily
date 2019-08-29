@@ -1,23 +1,19 @@
+const keys = require("./config/keys");
 const express = require("express");
+const bodyParser = require("body-parser");
+const passsport = require("passport");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
-const passsport = require("passport");
-const bodyParser = require("body-parser");
-var cors = require("cors");
-const keys = require("./config/keys");
-require("./model/User");
-require("./services/passport");
-
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+//var cors = require("cors");
 const app = express();
+require("./model/User");
+require("./model/Survey");
+require("./services/passport");
 
 //handles incoming data
 app.use(bodyParser.json());
 
-//handles cors
-// app.use(cors());
-
-//this code will make the cookie session for a given time with the given keys
+// this code will make the cookie session for a given time with the given keys
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -29,11 +25,14 @@ app.use(
 app.use(passsport.initialize());
 app.use(passsport.session());
 
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+
 // const authRoutes = require("./routes/authRoutes")
 // authRoutes(app);
 //the below line is the same than the above 2 lines
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   //express will serve up production assets

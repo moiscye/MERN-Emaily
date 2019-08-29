@@ -1,5 +1,9 @@
+//loading users model
+const mongoose = require("mongoose");
 const passport = require("passport");
 
+// const User = mongoose.model("users");
+const User = mongoose.model("users");
 module.exports = app => {
   app.get(
     //entry route to the google auth
@@ -31,7 +35,6 @@ module.exports = app => {
   });
 
   app.get("/api/current_user", (req, res) => {
-    console.log("in the current_user");
     res.send(req.user);
   });
 };

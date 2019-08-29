@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../actions";
 import { Link } from "react-router-dom";
+import * as actions from "../actions";
+
 import Payments from "./Payments";
+
 class Header extends Component {
   renderContent = () => {
     switch (this.props.auth) {
@@ -33,8 +35,6 @@ class Header extends Component {
   };
 
   render() {
-    console.log("rrender", this.props);
-
     return (
       <nav>
         <div className="nav-wrapper">
