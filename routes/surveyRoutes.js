@@ -44,7 +44,7 @@ module.exports = app => {
       })
       .value();
 
-    res.send("Thanks for Voting");
+    res.send({});
   });
 
   app.get("/api/surveys", requireLogin, async (req, res) => {
