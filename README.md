@@ -16,4 +16,4 @@ Covering the important authentication feature using the well known passport libr
 
 ## Live Demo of the Project
 
-- [go](https://serene-waters-70574.herokuapp.com){:target="_blank" rel="noopener"}
+- https://serene-waters-70574.herokuapp.com
